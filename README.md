@@ -10,45 +10,23 @@ This project is a Node.js + Express API that encodes text into token IDs and dec
 
 🛠 Tech Stack
 Node.js
-
 Express.js
-
 MongoDB (via Mongoose)
 
 📂 Project Structure
-pgsql
-Copy
-Edit
-.
-├── database.js       # Mongoose schema/model for token storage
-├── index.js          # Main server file
-└── package.json      # Dependencies and scripts
+
+├── database.js      
+├── index.js         
+└── package.json     
+
 ⚙️ Installation & Setup
 Clone the repository
-
-bash
-Copy
-Edit
 git clone https://github.com/giddearyan12/Custom-Tokenizer
 cd Custom-Tokenizer
+
 Install dependencies
-
-bash
-Copy
-Edit
 npm install
-Run MongoDB locally
-
-bash
-Copy
-Edit
-mongod
-Start the server
-
-bash
-Copy
-Edit
-node index.js
+node CustomToken.js
 Server will run at: http://localhost:8080
 
 📌 API Endpoints
@@ -59,16 +37,10 @@ Encodes text into unique token IDs.
 Request Body:
 
 json
-Copy
-Edit
 {
   "text": "hello world"
 }
 Response:
-
-json
-Copy
-Edit
 {
   "results": [12, 45]
 }
@@ -77,18 +49,10 @@ POST /api/decode
 Decodes token IDs back into words.
 
 Request Body:
-
-json
-Copy
-Edit
 {
   "tokens": [12, 45]
 }
 Response:
-
-json
-Copy
-Edit
 {
   "results": "hello,world"
 }
