@@ -1,96 +1,112 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Custom Token Encoder/Decoder API - README</title>
-</head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 20px;">
+📦 Custom Token Encoder/Decoder API
+This project is a Node.js + Express API that encodes text into token IDs and decodes token IDs back into words, storing all mappings in MongoDB.
 
-    <h1>Custom Token Encoder/Decoder API</h1>
-    <p>This project is a simple Node.js and Express-based API that encodes text into token IDs and decodes token IDs back to their original words using MongoDB for storage.</p>
+🚀 Features
+🔢 Encode text into unique token IDs.
 
-    <h2>📌 Features</h2>
-    <ul>
-        <li>Encode text into unique token IDs</li>
-        <li>Decode token IDs back to their original text</li>
-        <li>Stores token mappings in MongoDB</li>
-    </ul>
+🔄 Decode token IDs back to the original words.
 
-    <h2>🛠 Tech Stack</h2>
-    <ul>
-        <li>Node.js</li>
-        <li>Express.js</li>
-        <li>MongoDB (via Mongoose)</li>
-    </ul>
+🗄 Stores token mappings in MongoDB for persistence.
 
-    <h2>📂 Project Structure</h2>
-    <pre>
+🛠 Tech Stack
+Node.js
+
+Express.js
+
+MongoDB (via Mongoose)
+
+📂 Project Structure
+pgsql
+Copy
+Edit
 .
-├── database.js       
-├── index.js           
-└── package.json
-    </pre>
+├── database.js       # Mongoose schema/model for token storage
+├── index.js          # Main server file
+└── package.json      # Dependencies and scripts
+⚙️ Installation & Setup
+Clone the repository
 
-    <h2>⚙️ Installation</h2>
-    <ol>
-        <li>Clone the repository:
-            <pre>git clone &lt;https://github.com/giddearyan12/Custom-Tokenizer&gt;</pre>
-        </li>
-        <li>Install dependencies:
-            <pre>npm install</pre>
-        </li>
-        <li>Make sure MongoDB is running locally:
-            <pre>mongodb</pre>
-        </li>
-        <li>Run the server:
-            <pre>node CustomToken.js</pre>
-        </li>
-    </ol>
+bash
+Copy
+Edit
+git clone https://github.com/giddearyan12/Custom-Tokenizer
+cd Custom-Tokenizer
+Install dependencies
 
-    <h2>📌 API Endpoints</h2>
+bash
+Copy
+Edit
+npm install
+Run MongoDB locally
 
-    <h3>1️⃣ Encode Text</h3>
-    <p><strong>POST</strong> <code>/api/encode</code></p>
-    <p>Encodes a given text into token IDs.</p>
-    <strong>Request Body:</strong>
-    <pre>
+bash
+Copy
+Edit
+mongod
+Start the server
+
+bash
+Copy
+Edit
+node index.js
+Server will run at: http://localhost:8080
+
+📌 API Endpoints
+1️⃣ Encode Text
+POST /api/encode
+Encodes text into unique token IDs.
+
+Request Body:
+
+json
+Copy
+Edit
 {
-    "text": "hello world"
+  "text": "hello world"
 }
-    </pre>
-    <strong>Response:</strong>
-    <pre>
+Response:
+
+json
+Copy
+Edit
 {
-    "results": [12, 45]
+  "results": [12, 45]
 }
-    </pre>
+2️⃣ Decode Tokens
+POST /api/decode
+Decodes token IDs back into words.
 
-    <h3>2️⃣ Decode Tokens</h3>
-    <p><strong>POST</strong> <code>/api/decode</code></p>
-    <p>Decodes token IDs back into original text.</p>
-    <strong>Request Body:</strong>
-    <pre>
+Request Body:
+
+json
+Copy
+Edit
 {
-    "tokens": [12, 45]
+  "tokens": [12, 45]
 }
-    </pre>
-    <strong>Response:</strong>
-    <pre>
+Response:
+
+json
+Copy
+Edit
 {
-    "results": "hello,world"
+  "results": "hello,world"
 }
-    </pre>
+🔍 How It Works
+Encoding:
 
-    <h2>📌 How It Works</h2>
-    <ol>
-        <li>When encoding, each word is checked in MongoDB.</li>
-        <li>If the word exists, its existing token ID is returned.</li>
-        <li>If it doesn't exist, a random token ID is generated, stored in the database, and returned.</li>
-        <li>When decoding, token IDs are mapped back to their original stored words.</li>
-    </ol>
+Checks if each word exists in MongoDB.
 
-    <h2>📜 License</h2>
-    <p>This project is for learning and demonstration purposes. You can modify and use it as you wish.</p>
+If found → returns its existing token ID.
 
-</body>
-</html>
+If not found → generates a random token ID, stores it in MongoDB, and returns it.
+
+Decoding:
+
+Finds the original word for each token ID in MongoDB.
+
+If not found → returns "unknown".
+
+📜 License
+This project is for learning and demonstration purposes.
+You can modify and use it as you wish.
